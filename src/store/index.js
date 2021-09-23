@@ -21,9 +21,20 @@ export default new Vuex.Store({
     register: function( _ , payload){
       return serverAPI.post('/register', payload)
     },
-    // createConversation: function( _ , ){
-
-    // }
+    deleteChat: function( _ , payload){
+      const token = localStorage.getItem('access_token')
+      return serverAPI.delete(
+        '/conversation/delete', 
+        {conversationId: payload},
+        { headers:{
+            access_token: token
+          }
+        }
+      )
+    },
+    loginOath: function(nul, idToken){
+      return serverAPI.post('/googlesignin', {token: idToken})
+    },
   },
   modules: {
   }

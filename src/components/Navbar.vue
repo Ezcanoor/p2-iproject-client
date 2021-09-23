@@ -47,6 +47,8 @@ export default {
       localStorage.removeItem('id')
       localStorage.removeItem('name')
       localStorage.removeItem('email')
+      localStorage.removeItem('conversationId')
+
       this.$router.push({name: "Login"})
     }
   }

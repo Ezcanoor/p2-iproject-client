@@ -26,6 +26,7 @@
 								Submit
 							</button>
 						</form>
+            <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
 					</div>
 				</div>
 			</div>
@@ -33,13 +34,18 @@
 </template>
 
 <script>
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 export default {
   name: 'Login',
   data: function(){
     return{
       email: "",
-      password: ""
+      password: "",
+      clientId: "12246335717-ielgple4crof3sblf7pkns7r4lgvhda5.apps.googleusercontent.com"
     }
+  },
+   directives: {
+    GoogleSignInButton
   },
   methods:{
     login: function(){
@@ -62,6 +68,24 @@ export default {
           console.log(err);
         })
     },
+    OnGoogleAuthSuccess (idToken) {
+      // Receive the idToken and make your magic with the backend'
+      this.$store.dispatch('loginOath', idToken)
+        .then(resp => {
+          localStorage.setItem('access_token', resp.data.access_token)
+          localStorage.setItem('id', resp.data.id)
+          localStorage.setItem('email', resp.data.email)
+          localStorage.setItem('name', resp.data.name)
+          this.$store.commit('SET_ISLOGIN',true)
+          this.$router.push({name:'Home'})
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error)
+    }
     
   }
 }
