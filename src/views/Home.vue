@@ -7,11 +7,11 @@
         <div class="form-group">
           <label for="exampleFormControlInput1"></label>
           <input
-            type="email"
+            v-model="conversationId"
+            type="text"
             class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="name@example.com"
           />
+          <button @click.prevent="joinChat" class="btn btn-primary">Submit</button>
         </div>
       </div>
       <div>
@@ -36,6 +36,18 @@
 import Navbar from '../components/Navbar.vue'
 export default {
   name: "Home",
+  data: function(){
+    return{
+      conversationId : ""
+    }
+  },
+  methods: {
+    joinChat: function(){
+      localStorage.setItem('conversationId', this.conversationId)
+      // this.$store.dispatch()
+      this.$router.push({name: "Chat"})
+    }
+  },
   components: {
     Navbar
   }

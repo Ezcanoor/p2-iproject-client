@@ -14,30 +14,24 @@ export default {
   },
   mounted: function() {
     Talk.ready.then(function() {
-        var me = new Talk.User({
-            id: "20",
-            name: "muzani",
-            email: "muzani@mail.com",
-        });
+      const conversationId = localStorage.getItem('conversationIdd')
+      const id = localStorage.getItem('id')
+      const name = localStorage.getItem('name')
+      const email = localStorage.getItem('email')
 
-        if(!window.talkSession){
-          window.talkSession = new Talk.Session({
-          appId: 'tFEb2D5i',
-          me: me,
-          });
-        }
-        var other = new Talk.User({
-            id: "21",
-            name: "syukur",
-            email: "syukur@mail.com",
-        });
-        var conversation = window.talkSession.getOrCreateConversation(
-          Talk.oneOnOneId(me, other)
-        );
-        conversation.setParticipant(me);
-        conversation.setParticipant(other);
-        var inbox = window.talkSession.createInbox({ selected: conversation });
-        inbox.mount(document.getElementById('talkjs-container'));
+      const me = new Talk.User({
+          id,
+          name,
+          email
+      });
+      const talkSession = new Talk.Session({
+      appId: 'tFEb2D5i',
+      me: me,
+      });
+      const conversation = talkSession.getOrCreateConversation(`${conversationId}`);
+      conversation.setParticipant(me);
+      const inbox = talkSession.createInbox({ selected: conversation });
+      inbox.mount(document.getElementById('talkjs-container'));
 
     })
   }
