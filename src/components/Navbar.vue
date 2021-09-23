@@ -44,6 +44,10 @@ export default {
   methods:{
     logout: function(){
       localStorage.removeItem('access_token')
+      localStorage.removeItem('id')
+      localStorage.removeItem('name')
+      localStorage.removeItem('email')
+      this.$router.push({name: "Login"})
     }
   }
 };

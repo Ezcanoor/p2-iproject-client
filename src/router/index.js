@@ -11,19 +11,55 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter(to, from, next){
+      const token = localStorage.getItem('access_token')
+      if(to.name === "Home" && !token){
+        next({name: 'Login'})
+      }
+      else {
+        next()
+      }
+    }
   },{
     path: '/login',
-    name: 'login',
-    component: Login
+    name: 'Login',
+    component: Login,
+    beforeEnter(to, from, next){
+      const token = localStorage.getItem('access_token')
+      if(to.name === "Login" && token){
+        next({name: 'Home'})
+      }
+      else {
+        next()
+      }
+    }
   },{
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    beforeEnter(to, from, next){
+      const token = localStorage.getItem('access_token')
+      if(to.name === "Register" && token){
+        next({name: 'Home'})
+      }
+      else {
+        next()
+      }
+    }
   },{
     path: '/chat',
     name: 'Chat',
-    component: Chat
+    component: Chat,
+    beforeEnter(to, from, next){
+      const token = localStorage.getItem('access_token')
+      if(to.name === "Chat" && !token){
+        next({name: 'Login'})
+      }
+      else {
+        next()
+      }
+    }
   }
   
 ]

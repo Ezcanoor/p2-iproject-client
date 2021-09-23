@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin : false
+    isLogin : false,
+    id: ""
   },
   mutations: {
     SET_ISLOGIN: function(state, status){
@@ -19,7 +20,10 @@ export default new Vuex.Store({
     },
     register: function( _ , payload){
       return serverAPI.post('/register', payload)
-    }
+    },
+    // createConversation: function( _ , ){
+
+    // }
   },
   modules: {
   }

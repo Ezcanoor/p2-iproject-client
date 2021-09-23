@@ -51,6 +51,10 @@ export default {
         .then(resp => {
           const token = resp.data.access_token
           localStorage.setItem('access_token', token)
+          localStorage.setItem('id', resp.data.id)
+          localStorage.setItem('email', resp.data.email)
+          localStorage.setItem('name', resp.data.name)
+
           this.$store.commit('SET_ISLOGIN', true)
           this.$router.push({name: 'Home'})
         })
