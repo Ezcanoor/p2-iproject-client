@@ -12,17 +12,17 @@
 						<form role="form">
 							<div class="form-group">
 								<label for="exampleInputEmail1">
-									Email address
+									Email Address
 								</label>
-								<input type="email" class="form-control" id="exampleInputEmail1">
+								<input v-model="email" type="email" class="form-control" id="exampleInputEmail1">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">
 									Password
 								</label>
-								<input type="password" class="form-control" id="exampleInputPassword1">
+								<input v-model="password" type="password" class="form-control" id="exampleInputPassword1">
 							</div>
-							<button type="submit" class="btn btn-primary">
+							<button @click.prevent="login" type="submit" class="btn btn-primary">
 								Submit
 							</button>
 						</form>
@@ -34,7 +34,32 @@
 
 <script>
 export default {
-
+  name: 'Login',
+  data: function(){
+    return{
+      email: "",
+      password: ""
+    }
+  },
+  methods:{
+    login: function(){
+      const payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', payload)
+        .then(resp => {
+          const token = resp.data.access_token
+          localStorage.setItem('access_token', token)
+          this.$store.commit('SET_ISLOGIN', true)
+          this.$router.push({name: 'Home'})
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+    
+  }
 }
 </script>
 
