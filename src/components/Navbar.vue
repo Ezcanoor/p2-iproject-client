@@ -6,12 +6,6 @@
           <li class="nav-item">
             <a class="nav-link active" href="#">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Messages</a>
-          </li>
           <li class="nav-item dropdown ml-md-auto">
             <a
               class="nav-link dropdown-toggle"

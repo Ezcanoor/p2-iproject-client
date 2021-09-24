@@ -8,7 +8,7 @@
 					<div class="col-md-8">
 						<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4" style="padding:100px">
 						<form role="form">
 							<div class="form-group">
 								<label for="exampleInputEmail1">

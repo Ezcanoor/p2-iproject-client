@@ -23,7 +23,7 @@
             type="email"
             class="form-control"
             id="exampleFormControlInput1"
-            placeholder="name@example.com"
+            placeholder=""
           />
           <button @click.prevent="deleteChat" class="btn btn-primary">Submit</button>
         </div>
